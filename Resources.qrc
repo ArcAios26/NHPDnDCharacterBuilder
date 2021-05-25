@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/Background">
+        <file>images/character.png</file>
+        <file>images/details.png</file>
+        <file>images/spells.png</file>
+    </qresource>
+</RCC>
