@@ -2,8 +2,7 @@
 #include "utils.h"
 
 CharacterSheet::CharacterSheet(QWidget *parent) :
-    QWidget(parent), bkgnd(new QPixmap(":/Background/images/character.png")), lblName(new QLabel(this)), lblClass(new QLabel(this)), lblBackground(new QLabel(this)),
-    lblPlayer(new QLabel(this)), lblRace(new QLabel(this)), lblAlignment(new QLabel(this)), lblExperience(new QLabel(this))
+    QWidget(parent), bkgnd(new QPixmap(":/Background/images/character.png")), lblName(new QLabel(this))
 {
     //set sheet size
     setFixedSize(1275,1650);
@@ -11,6 +10,7 @@ CharacterSheet::CharacterSheet(QWidget *parent) :
     //setup Labels
     setupNameLabel();
     setupClassBlock();
+    setupStatBlock();
 }
 
 CharacterSheet::~CharacterSheet()
@@ -40,29 +40,46 @@ void CharacterSheet::setupNameLabel()
 
 void CharacterSheet::setupClassBlock()
 {
-    QFont font = setupFont(lblClass->font(), false, 12);
+    for (int x = 563, i = 236; x < 1002; x+=i,i-=34)
+    {
+        QLabel *topLabel = new QLabel(this);
+        QLabel *btmLabel = new QLabel(this);
+        topLabel->setFont(setupFont(topLabel->font(), false, 12));
+        btmLabel->setFont(setupFont(btmLabel->font(), false, 12));
+        topLabel->setGeometry(x, 92, i-2, 39);
+        btmLabel->setGeometry(x, 147,i-2, 39);
+        lblClassBlock.push_back(topLabel);
+        lblClassBlock.push_back(btmLabel);
+    }
 
-    lblClass->setGeometry(563, 92, 234, 39);
-    lblBackground->setGeometry(799, 92, 200, 39);
-    lblPlayer->setGeometry(1001, 92, 182, 39);
-    lblRace->setGeometry(563, 147, 234, 39);
-    lblAlignment->setGeometry(799, 147, 200, 39);
-    lblExperience->setGeometry(1001, 147, 200, 39);
+    lblClassBlock[0]->setWordWrap(true);
 
-    lblClass->setFont(font);
-    lblBackground->setFont(font);
-    lblPlayer->setFont(font);
-    lblRace->setFont(font);
-    lblAlignment->setFont(font);
-    lblExperience->setFont(font);
-
-    lblClass->setWordWrap(true);
-
-    lblClass->setText("Cleric 3 / Wizard 2 / Fighter 5 / Paladin 2");
-    lblBackground->setText("Priest");
-    lblPlayer->setText("Gary Brickhouse");
-    lblRace->setText("Elf");
-    lblAlignment->setText("Chaotic Neutral");
-    lblExperience->setText("100,000,000");
+    lblClassBlock[0]->setText("Cleric-3 / Wizard-3");
+    lblClassBlock[1]->setText("Elf");
+    lblClassBlock[2]->setText("Clergy");
+    lblClassBlock[3]->setText("Chaotic Neutral");
+    lblClassBlock[4]->setText("Gary Brickhouse");
+    lblClassBlock[5]->setText("100,000,000");
 }
 
+void CharacterSheet::setupStatBlock()
+{
+    for (int y = 318; y < 1064; y+=149)
+    {
+        QLabel *label = new QLabel(this);
+        label->setFont(setupFont(label->font(), true, 30));
+        label->setGeometry(75, y, 87, 61);
+        label->setAlignment(Qt::AlignCenter);
+        label->setText("+4");
+        lblStatsMod.push_back(label);
+    }
+
+    for (int y = 392; y < 1138; y+=149)
+    {
+        QLabel *label = new QLabel(this);
+        label->setFont(setupFont(label->font(), false, 16));
+        label->setGeometry(103, y, 31, 19);
+        label->setAlignment(Qt::AlignCenter);
+        label->setText("18");
+    }
+}

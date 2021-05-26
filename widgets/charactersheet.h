@@ -19,16 +19,20 @@ private:
 
     void setupNameLabel();
     void setupClassBlock();
+    void setupStatBlock();
 
     QPixmap *bkgnd;
     QLabel *lblName;
-    QLabel *lblClass;
-    QLabel *lblBackground;
-    QLabel *lblPlayer;
-    QLabel *lblRace;
-    QLabel *lblAlignment;
-    QLabel *lblExperience;
-
+    //QLabel *lblInspiration;
+    //QLabel *lblProfBonus;
+    //QLabel *lblStrSave, *lblDexSave, *lblConSave, *lblIntSave, *lblWisSave, *lblChaSave;
+    //QLabel *lblStrProf, *lblDexProf, *lblConProf, *lblIntProf, *lblWisProf, *lblChaProf;
+    //QLabel *lblAcrobatics, *lblAnimalHandling, *lblArcana, *lblAthletics, *lblDeception, *lblHistory, *lblInsight, *lblIntimidation, *lblInvestigation,
+    //       *lblMedicine, *lblNature, *lblPerception, *lblPerformance, *lblPersuasion, *lblReligion, *lblSleightOfHand, *lblStealth, *lblSurvival;
+    //QLabel *lblAcrobaticsProf, *lblAnimalHandlingProf, *lblArcanaProf, *lblAthleticsProf, *lblDeceptionProf, *lblHistoryProf, *lblInsightProf, *lblIntimidationProf, *lblInvestigationProf,
+    //       *lblMedicineProf, *lblNatureProf, *lblPerceptionProf, *lblPerformanceProf, *lblPersuasionProf, *lblReligionProf, *lblSleightOfHandPof, *lblStealthProf, *lblSurvivalProf;
+    QList<QLabel *> lblClassBlock;
+    QList<QLabel *> lblStats, lblStatsMod;
 signals:
 
 };
