@@ -2,7 +2,7 @@
 #include "utils.h"
 
 CharacterSheet::CharacterSheet(QWidget *parent) :
-    QWidget(parent), bkgnd(new QPixmap(":/Background/images/character.png")), lblName(new QLabel(this))
+    QWidget(parent), bkgnd(new QPixmap(":/Background/images/character.png")), lblName(new QLabel(this)), lblInspiration(new QLabel(this)), lblProfBonus(new QLabel(this))
 {
     //set sheet size
     setFixedSize(1275,1650);
@@ -11,6 +11,7 @@ CharacterSheet::CharacterSheet(QWidget *parent) :
     setupNameLabel();
     setupClassBlock();
     setupStatBlock();
+    setupSkillBlock();
 }
 
 CharacterSheet::~CharacterSheet()
@@ -81,5 +82,63 @@ void CharacterSheet::setupStatBlock()
         label->setGeometry(103, y, 31, 19);
         label->setAlignment(Qt::AlignCenter);
         label->setText("18");
+    }
+}
+
+void CharacterSheet::setupSkillBlock()
+{
+    lblInspiration->setGeometry(200, 270, 47, 39);
+    lblInspiration->setFont(setupFont(lblInspiration->font(), true, 30));
+    lblInspiration->setAlignment(Qt::AlignCenter);
+    lblInspiration->setText("X");
+
+    lblProfBonus->setGeometry(205, 351, 43, 34);
+    lblProfBonus->setFont(setupFont(lblProfBonus->font(), false, 22));
+    lblProfBonus->setAlignment(Qt::AlignCenter);
+    lblProfBonus->setText("+3");
+
+    for (int y = 427; y < 568; y+=28)
+    {
+        QLabel *label = new QLabel(this);
+        label->setFont(setupFont(label->font(), true, 14));
+        label->setGeometry(205, y, 24, 24);
+        label->setAlignment(Qt::AlignCenter);
+        label->setText("X");
+        lblSaveProf.push_back(label);
+    }
+
+    for (int y = 423; y < 565; y+=28)
+    {
+        QLabel *label = new QLabel(this);
+        label->setFont(setupFont(label->font(), false, 14));
+        label->setGeometry(237, y, 25, 22);
+        label->setAlignment(Qt::AlignCenter);
+        label->setText("+3");
+        lblSaves.push_back(label);
+    }
+
+    for (int y = 667, i = 1; y < 1146; y+=28, i++)
+    {
+        QLabel *label = new QLabel(this);
+        label->setFont(setupFont(label->font(), true, 14));
+        if (i == 8)
+        {
+            y++;
+            i = 1;
+        }
+        label->setGeometry(205, y, 24, 24);
+        label->setAlignment(Qt::AlignCenter);
+        label->setText("X");
+        lblSkillProf.push_back(label);
+    }
+
+    for (int y = 663; y < 1142; y+=28)
+    {
+        QLabel *label = new QLabel(this);
+        label->setFont(setupFont(label->font(), false, 14));
+        label->setGeometry(237, y, 25, 22);
+        label->setAlignment(Qt::AlignCenter);
+        label->setText("+3");
+        lblSkills.push_back(label);
     }
 }

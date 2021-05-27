@@ -20,9 +20,12 @@ private:
     void setupNameLabel();
     void setupClassBlock();
     void setupStatBlock();
+    void setupSkillBlock();
 
     QPixmap *bkgnd;
     QLabel *lblName;
+    QLabel *lblInspiration;
+    QLabel *lblProfBonus;
     //QLabel *lblInspiration;
     //QLabel *lblProfBonus;
     //QLabel *lblStrSave, *lblDexSave, *lblConSave, *lblIntSave, *lblWisSave, *lblChaSave;
@@ -33,6 +36,8 @@ private:
     //       *lblMedicineProf, *lblNatureProf, *lblPerceptionProf, *lblPerformanceProf, *lblPersuasionProf, *lblReligionProf, *lblSleightOfHandPof, *lblStealthProf, *lblSurvivalProf;
     QList<QLabel *> lblClassBlock;
     QList<QLabel *> lblStats, lblStatsMod;
+    QList<QLabel *> lblSaves, lblSaveProf;
+    QList<QLabel *> lblSkills, lblSkillProf;
 signals:
 
 };
